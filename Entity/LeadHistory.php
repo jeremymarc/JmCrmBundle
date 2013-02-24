@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table
  * @ORM\Entity
  */
-class ProspectHistory
+class LeadHistory
 {
     /**
      * @var integer
