@@ -1,0 +1,21 @@
+{
+    "name": "jm/crm-bundle",
+    "type": "symfony-bundle",
+    "description": "Simple way to manage your prospect",
+    "keywords": ["prospect", "commercial"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeremy Marc",
+            "email": "jeremy.marc@me.com"
+    }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "twig/twig": ">=1.7"
+    },
+    "target-dir": "Jm/CrmBundle",
+    "autoload": {
+        "psr-0": { "Jm\\CrmBundle": "" }
+    }
+}

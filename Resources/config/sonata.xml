@@ -1,0 +1,12 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="jm_crm.lead_admin" class="Jm\CrmBundle\Admin\LeadAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Client" label="Lead" />
+            <argument />
+            <argument>Jm\CrmBundle\Entity\Lead</argument>
+            <argument>JmCrmBundle:LeadAdmin</argument>
+        </service>
+    </services>
+</container>
