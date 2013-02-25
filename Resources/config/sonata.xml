@@ -3,10 +3,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="jm_crm.lead_admin" class="Jm\CrmBundle\Admin\LeadAdmin">
-            <tag name="sonata.admin" manager_type="orm" group="Client" label="Lead" />
+            <tag name="sonata.admin" manager_type="orm" group="Lead" label="Lead" />
             <argument />
             <argument>Jm\CrmBundle\Entity\Lead</argument>
             <argument>JmCrmBundle:LeadAdmin</argument>
+            <call method="setContactedBy">
+                <argument>%jm_crm.contacted_by%</argument>
+            </call>
+        </service>
+
+        <service id="jm_crm.leadhistory_admin" class="Jm\CrmBundle\Admin\LeadHistoryAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Lead" label="LeadHistory" />
+            <argument />
+            <argument>Jm\CrmBundle\Entity\LeadHistory</argument>
+            <argument>JmCrmBundle:LeadHistoryAdmin</argument>
+            <call method="setContactedBy">
+                <argument>%jm_crm.contacted_by%</argument>
+            </call>
         </service>
     </services>
 </container>

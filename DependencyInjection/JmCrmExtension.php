@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Definition;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class JmABExtension extends Extension
+class JmCrmExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -22,6 +22,8 @@ class JmABExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('jm_crm.contacted_by', $config['contacted_by']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
