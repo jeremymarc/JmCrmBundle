@@ -32,7 +32,7 @@ class LeadHistory
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=50)
-     * @Assert\Choice(callback="Jm\CrmBundle\Enum\ContactType::toArray()")
+     * @Assert\Choice(callback = {"Jm\CrmBundle\Enum\ContactTypeEnum", "values"})
      */
     private $contactType;
 
