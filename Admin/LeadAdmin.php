@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Admin\Admin;
 use Jm\CrmBundle\Enum\CompanyCategoryEnum;
 use Jm\CrmBundle\Enum\CompanyTypeEnum;
+use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Admin\AdminInterface;
 
 class LeadAdmin extends Admin
 {
@@ -17,14 +19,19 @@ class LeadAdmin extends Admin
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('firstname')
-            ->add('lastname')
-            ->add('companyName')
-            ->add('email')
-            ->add('website')
-            ->add('companyCategory')
-            ->add('companyType')
-            ->add('managedBy')
+            ->with('Lead')
+                ->add('firstname')
+                ->add('lastname')
+                ->add('companyName')
+                ->add('email')
+                ->add('website')
+                ->add('companyCategory')
+                ->add('companyType')
+                ->add('managedBy')
+            ->end()
+            ->with('History')
+                ->add('historys', 'entity')
+            ->end()
         ;
     }
 
@@ -87,6 +94,29 @@ class LeadAdmin extends Admin
             ->add('createdAt')
             ->add('updatedAt')
             ;
+    }
+
+    protected function configureSideMenu(MenuItemInterface $menu, $action, AdminInterface $childAdmin = null)
+    {
+        $admin = $this->isChild() ? $this->getParent() : $this;
+        $id = $admin->getRequest()->get('id');
+
+        if ('show' == $action) {
+            $item = $this->menuFactory->createItem('history', array(
+                'uri' => '/admin/jm/crm/leadhistory/list?filter%5Blead__id%5D%5Bvalue%5D=' . $id,
+                'label' => 'View history',
+            ));
+            $menu->addChild($item);
+
+            if (class_exists('Rj\EmailBundle\RjEmailBundle')) {
+                //$item = $this->menuFactory->createItem('history', array(
+                    //'uri' => '#',
+                    //'label' => 'Send a new email',
+                //));
+                //$menu->addChild($item);
+            }
+        }
+        
     }
 
     public function setContactedBy($contactedBy)
