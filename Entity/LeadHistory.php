@@ -24,7 +24,7 @@ class LeadHistory
     private $id;
 
     /**
-      * @ORM\ManyToOne(targetEntity="Lead", cascade={"all"})
+      * @ORM\ManyToOne(targetEntity="Lead", inversedBy="leadHistorys", cascade={"all"})
       */
     private $lead;
 
@@ -187,7 +187,11 @@ class LeadHistory
 
     public function __toString()
     {
-        return '';
-        return $this->lead->getCompany();
+        return sprintf("Contacted by %s with %s at %s (%s)",
+            $this->getContactedBy(),
+            $this->getContactType(),
+            $this->getDate()->format('d-m-Y'),
+            $this->getDescription()
+        );
     }
 }

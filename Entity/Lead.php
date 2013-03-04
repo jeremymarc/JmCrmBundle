@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Jm\CrmBundle\Enum\CompanyCategoryEnum;
 use Jm\CrmBundle\Enum\CompanyTypeEnum;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Lead
@@ -76,7 +77,6 @@ class Lead
      */
     private $companyCategory;
 
-
     /**
      * @var string
      *
@@ -97,6 +97,17 @@ class Lead
      * @ORM\Column(name="updated_at", type="datetime")
      */
     private $updatedAt;
+
+    /**
+      * @ORM\OneToMany(targetEntity="LeadHistory", mappedBy="lead")
+      * @ORM\OrderBy({"date" = "DESC"})
+      */
+    private $historys;
+
+    public function __construct()
+    {
+        $this->historys = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -323,6 +334,27 @@ class Lead
     public function getManagedBy()
     {
         return $this->managedBy;
+    }
+
+    /**
+     * Set historys
+     *
+     * @return ArrayCollection
+     */
+    public function setHistorys($historys)
+    {
+        $this->historys = $historys;
+        return $this;
+    }
+
+    /**
+     * Get history
+     *
+     * @return ArrayCollection
+     */
+    public function getHistorys()
+    {
+        return $this->historys;
     }
 
     /**
