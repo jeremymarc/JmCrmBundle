@@ -23,7 +23,11 @@ class JmCrmExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('jm_crm.contacted_by', $config['contacted_by']);
+        $contactedByIndexed = array();
+        foreach($config['contacted_by'] as $value) {
+            $contactedByIndexed[$value] = $value;
+        }
+        $container->setParameter('jm_crm.contacted_by', $contactedByIndexed);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
