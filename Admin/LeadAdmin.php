@@ -20,11 +20,14 @@ class LeadAdmin extends Admin
     {
         $showMapper
             ->with('Lead')
+                ->add('id')
                 ->add('firstname')
                 ->add('lastname')
                 ->add('companyName')
                 ->add('email')
                 ->add('website')
+                ->add('phone')
+                ->add('mobile')
                 ->add('companyCategory')
                 ->add('companyType')
                 ->add('managedBy')
@@ -44,6 +47,8 @@ class LeadAdmin extends Admin
                 ->add('firstname')
                 ->add('lastname')
                 ->add('website')
+                ->add('phone')
+                ->add('mobile')
                 ->add('companyCategory', 'choice', array(
                     'choices' => CompanyCategoryEnum::toArray(),
                 ))
@@ -60,6 +65,7 @@ class LeadAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->addIdentifier('companyName')
             ->add('firstname')
             ->add('lastname')
@@ -83,6 +89,7 @@ class LeadAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('companyName')
             ->add('firstname')
             ->add('lastname')
@@ -91,8 +98,8 @@ class LeadAdmin extends Admin
             ->add('companyCategory')
             ->add('companyType')
             ->add('managedBy')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt', 'doctrine_orm_date_range')
+            ->add('updatedAt', 'doctrine_orm_date_range')
             ;
     }
 

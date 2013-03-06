@@ -62,6 +62,18 @@ class Lead
     private $website;
 
     /**
+      * @var string
+      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+      * @var string
+      * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    private $mobile;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="company_type", type="string", length=30, nullable=true)
@@ -355,6 +367,48 @@ class Lead
     public function getHistorys()
     {
         return $this->historys;
+    }
+
+    /**
+     * Get phone.
+     *
+     * @return phone.
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+    
+    /**
+     * Set phone.
+     *
+     * @param phone the value to set.
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+    
+    /**
+     * Get mobile.
+     *
+     * @return mobile.
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+    
+    /**
+     * Set mobile.
+     *
+     * @param mobile the value to set.
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+        return $this;
     }
 
     /**
