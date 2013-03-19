@@ -1,8 +1,13 @@
 <container xmlns="http://symfony.com/schema/dic/services"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter key="jm_crm.lead_admin.class">Jm\CrmBundle\Admin\LeadAdmin</parameter>
+        <parameter key="jm_crm.leadhistory_admin.class">Jm\CrmBundle\Admin\LeadHistoryAdmin</parameter>
+    </parameters>
+    
     <services>
-        <service id="jm_crm.lead_admin" class="Jm\CrmBundle\Admin\LeadAdmin">
+        <service id="jm_crm.lead_admin" class="%jm_crm.lead_admin.class%">
             <tag name="sonata.admin" manager_type="orm" group="Lead" label="Lead" />
             <argument />
             <argument>Jm\CrmBundle\Entity\Lead</argument>
@@ -12,7 +17,7 @@
             </call>
         </service>
 
-        <service id="jm_crm.leadhistory_admin" class="Jm\CrmBundle\Admin\LeadHistoryAdmin">
+        <service id="jm_crm.leadhistory_admin" class="%jm_crm.leadhistory_admin.class%">
             <tag name="sonata.admin" manager_type="orm" group="Lead" label="LeadHistory" />
             <argument />
             <argument>Jm\CrmBundle\Entity\LeadHistory</argument>
