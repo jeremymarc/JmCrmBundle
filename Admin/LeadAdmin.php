@@ -125,16 +125,7 @@ class LeadAdmin extends Admin
                 'label' => 'View history',
             ));
             $menu->addChild($item);
-
-            if (class_exists('Rj\EmailBundle\RjEmailBundle')) {
-                //$item = $this->menuFactory->createItem('history', array(
-                    //'uri' => '#',
-                    //'label' => 'Send a new email',
-                //));
-                //$menu->addChild($item);
-            }
         }
-        
     }
 
     public function setContactedBy($contactedBy)
