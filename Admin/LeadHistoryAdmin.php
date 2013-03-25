@@ -14,6 +14,17 @@ class LeadHistoryAdmin extends Admin
 {
     private $contactedBy;
 
+    public function createQuery($context = 'list')
+    {
+        $query = parent::createQuery($context);
+
+        $query->getQueryBuilder()
+            ->add('orderBy', 'l.createdAt DESC')
+            ;
+
+        return $query;
+    }
+
     protected function configureShowField(ShowMapper $showMapper)
     {
         $showMapper
