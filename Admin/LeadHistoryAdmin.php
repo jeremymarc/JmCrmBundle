@@ -19,7 +19,7 @@ class LeadHistoryAdmin extends Admin
         $query = parent::createQuery($context);
 
         $query->getQueryBuilder()
-            ->add('orderBy', 'o.createdAt DESC')
+            ->add('orderBy', 'o.date DESC')
             ;
 
         return $query;
